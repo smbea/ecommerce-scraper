@@ -1,0 +1,3 @@
+website,title,price,img
+asos,h1,"span[data-testid=""current-price""]",div.fullImageContainer img
+zalando,"div[id=""main-content""] h1","div[id=""main-content""] p._0Qm8W1","div[id=""main-content""] img._0Qm8W1.u-6V88"
