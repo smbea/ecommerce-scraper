@@ -2,3 +2,8 @@ website,title,price,img
 asos,h1,"span[data-testid=""current-price""]",div.fullImageContainer img
 zalando,"div[id=""main-content""] h1","div[id=""main-content""] h1 + div > div> div p","div[id=""main-content""] img"
 amazon,"h1 > span",".a-price .a-offscreen","span[data-action=""main-image-click""] img"
+ikea,"span.pip-header-section__title--big","span.pip-temp-price__integer","div.pip-media-grid__grid img"
+home24,"h1","span[data-testid='current-price']","div[data-testid=""main-carousel-slide""] img"
+zarahome,"h2 span","span.price",".product-slider-photo img"
+zara,"h1.product-detail-info__header-name","span.money-amount__main",".product-detail-images__image img"
+oysho,"h1.product-info__name","[data-testid='price-wrapper-price'] div.multi-currency-wrapper__price",".product-detail-images__content-images img"
