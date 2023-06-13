@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 from urllib.parse import urlsplit
 
-from scrapper_util import findElement
+from scrapper_util import findElement, LANGUAGE_CODES
 
 
 driver = None
@@ -33,18 +33,15 @@ def init_driver():
 
 
 def get_product_info(url):
-  base_url = urlsplit(url).netloc
-  websiteName = base_url.split('.')[1]
 
-  if websiteName == 'asos':
-    productInfo = scrapper(driver, url, selectorsCSV.loc['asos'])
-    return productInfo
+  websiteName = parseUrl(url)
+  print("Website name: " + websiteName)
 
-  elif websiteName == 'zalando':
-    productInfo = scrapper(driver, url, selectorsCSV.loc['zalando'])
+  try: 
+    websiteSelector = selectorsCSV.loc[websiteName]
+    productInfo = scrapper(driver, url, websiteSelector)
     return productInfo
-  
-  else:
+  except:
     return "Not supported yet"
 
 
@@ -72,3 +69,25 @@ def scrapeUrl(url):
   info = get_product_info(url)
 
   return info
+
+
+def parseUrl(url):
+  # get hostname
+  base_url = urlsplit(url).netloc
+
+  # Remove www. from url
+  if base_url.startswith('www.'):
+    base_url = base_url[4:]
+
+  # Remove language code from url
+  langIndex = base_url.find('.')
+  langCode = base_url[:langIndex]
+
+  if (len(langCode) == 2) & (base_url[:langIndex] in LANGUAGE_CODES):
+    base_url = base_url[3:]
+
+  # Remove tld from url
+  tldIndex = base_url.find('.')
+  base_url = base_url[:tldIndex]
+
+  return base_url
