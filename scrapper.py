@@ -49,7 +49,7 @@ def scrapper(driver, url, selectors):
   driver.get(url)
 
   try:
-    element = EC.presence_of_element_located((By.TAG_NAME, 'h1'))
+    element = EC.presence_of_element_located((By.CSS_SELECTOR, selectors["img"]))
     WebDriverWait(driver, 5).until(element)
   except TimeoutException:
       print("Timed out waiting for page to load")

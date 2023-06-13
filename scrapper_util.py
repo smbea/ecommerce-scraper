@@ -5,7 +5,7 @@ def findElement(driver, selector, text, attributeToGet):
     element = driver.find_element(By.CSS_SELECTOR, selector)
 
     if(text):
-      return element.text
+      return element.text or element.get_attribute('innerText')
     elif(attributeToGet):
       return element.get_attribute(attributeToGet)
   except:
