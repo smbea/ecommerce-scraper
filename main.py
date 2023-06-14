@@ -4,7 +4,7 @@ from http.server import HTTPServer
 from server import Server
 from scrapper import init_driver
 
-HOST_NAME = 'localhost'
+HOST_NAME = '0.0.0.0'
 PORT_NUMBER = 8000
 
 if __name__ == '__main__':

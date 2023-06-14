@@ -14,9 +14,11 @@ class Server(BaseHTTPRequestHandler):
     return
     
   def handle_http(self):
-    print("request path: " + self.path)
-
     parsed = urlparse(self.path)
+
+    if not parsed.query:
+      return 200, json.dumps({"message": "Hello World"})
+
     url = parse_qs(parsed.query)['url'][0]
 
     if not isValidUrl(url):
@@ -29,10 +31,19 @@ class Server(BaseHTTPRequestHandler):
       return 200, json.dumps(info)
     except:
       return 500, json.dumps({"message": "Unknown error occured"})
+    
+  def handle_health(self):
+    return 200, json.dumps({"message": "OK"})
 
     
   def respond(self):
-    status, content = self.handle_http()
+    parsedUrl = urlparse(self.path)
+    path = parsedUrl.path
+
+    if path == '/health':
+      status, content = self.handle_health()
+    else:
+      status, content = self.handle_http()
     self.send_response(status)
     self.send_header('Content-type', 'application/json')
     self.end_headers()
