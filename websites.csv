@@ -1,6 +1,6 @@
 website,title,price,img
 asos,h1,"span[data-testid=""current-price""]",div.fullImageContainer img
-zalando,"div[id=""main-content""] h1","div[id='main-content'] h1 + div > div> div > div > p","div[id=""main-content""] img"
+zalando,"div[id=""main-content""] h1","div[id='main-content'] h1 + div > div> div > div > p","div[id='main-content'] div > div > div > img"
 amazon,"h1 > span",".a-price .a-offscreen","span[data-action=""main-image-click""] img"
 ikea,"span.pip-header-section__title--big","span.pip-temp-price__integer","div.pip-media-grid__grid img"
 home24,"h1","span[data-testid='current-price']","div[data-testid=""main-carousel-slide""] img"
