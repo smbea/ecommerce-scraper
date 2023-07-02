@@ -27,8 +27,11 @@ class Server(BaseHTTPRequestHandler):
     try:
       info = scrapeUrl(url)
       if info == "Not supported yet":
-        return 404, json.dumps({"message": "Website not supported yet"})
-      return 200, json.dumps(info)
+        return 501, json.dumps({"message": "Website not supported yet"})
+      elif info == "Timed out waiting for page to load":
+        return 500, json.dumps({"message": "Timed out waiting for page to load"})
+      else:
+        return 200, json.dumps(info)
     except:
       return 500, json.dumps({"message": "Unknown error occured"})
     

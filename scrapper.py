@@ -53,7 +53,7 @@ def scrapper(driver, url, selectors):
     WebDriverWait(driver, 5).until(element)
   except TimeoutException:
       print("Timed out waiting for page to load")
-      return
+      return "Timed out waiting for page to load"
 
   return {
     'title': findElement(driver, selectors["title"], True, None),
