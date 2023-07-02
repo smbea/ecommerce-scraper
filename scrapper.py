@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import pandas as pd
 from urllib.parse import urlsplit
+from bs4 import BeautifulSoup
 
 from scrapper_util import findElement, LANGUAGE_CODES
 
@@ -54,11 +55,14 @@ def scrapper(driver, url, selectors):
   except TimeoutException:
       print("Timed out waiting for page to load")
       return "Timed out waiting for page to load"
+  
+  page_source = driver.page_source
+  soup = BeautifulSoup(page_source, 'html.parser')
 
   return {
-    'title': findElement(driver, selectors["title"], True, None),
-    'price': findElement(driver, selectors["price"], True, None),
-    'image': findElement(driver, selectors["img"], False, 'src')
+    'title': findElement(soup, selectors["title"], True, None),
+    'price': findElement(soup, selectors["price"], True, None),
+    'image': findElement(soup, selectors["img"], False, 'src')
   }
 
 def scrapeUrl(url):

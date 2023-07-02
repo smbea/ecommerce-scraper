@@ -1,13 +1,13 @@
 from selenium.webdriver.common.by import By
 
-def findElement(driver, selector, text, attributeToGet):
+def findElement(html, selector, text, attributeToGet):
   try:
-    element = driver.find_element(By.CSS_SELECTOR, selector)
+    element = html.select_one(selector)
 
     if(text):
-      return element.text or element.get_attribute('innerText')
+      return element.text or element.get('innerText')
     elif(attributeToGet):
-      return element.get_attribute(attributeToGet)
+      return element.get(attributeToGet)
   except:
     return None
 
